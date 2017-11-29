@@ -3,6 +3,10 @@
 
 * https://tour.golang.org
 
+* https://tour.golang.org/list
+
+* https://tour.go-zh.org/list
+
 
 ### 常用命令
 * `go run xx.go`
