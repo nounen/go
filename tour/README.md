@@ -1,3 +1,7 @@
+### 看点
+* 注意 .go 文件里的注释  `//`, 每一段注释都是来自教程
+
+
 ### 教程
 * https://tour.go-zh.org || https://tour.golang.org
 
