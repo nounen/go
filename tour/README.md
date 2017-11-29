@@ -1,11 +1,11 @@
-### 来源
-* https://tour.go-zh.org
+### 教程
+* https://tour.go-zh.org || https://tour.golang.org
 
-* https://tour.golang.org
+* https://tour.golang.org/list || https://tour.go-zh.org/list
 
-* https://tour.golang.org/list
 
-* https://tour.go-zh.org/list
+### api 文档
+* https://go-zh.org/pkg || https://golang.org/pkg
 
 
 ### 常用命令
