@@ -7,6 +7,8 @@
 
 * flowcontrol: https://tour.go-zh.org/flowcontrol/1
 
+* moretypes: https://tour.go-zh.org/moretypes/1
+
 * https://tour.golang.org/list || https://tour.go-zh.org/list
 
 
