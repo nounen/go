@@ -9,6 +9,8 @@
 
 * moretypes: https://tour.go-zh.org/moretypes/1
 
+* methods: https://tour.go-zh.org/methods/1
+
 * https://tour.golang.org/list || https://tour.go-zh.org/list
 
 
