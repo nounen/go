@@ -24,11 +24,11 @@ func main()  {
 
 func printBoard(s [][]string)  {
 	/*
-	X_X
-	O__
-	X_O
+	X _ X
+	O _ _
+	X _ O
 	*/
 	for i := 0; i < len(s); i++ {
-		fmt.Printf("%s\n", strings.Join(s[i], ""))
+		fmt.Printf("%s\n", strings.Join(s[i], " "))
 	}
 }
