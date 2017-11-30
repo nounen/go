@@ -3,7 +3,9 @@
 
 
 ### 教程
-* https://tour.go-zh.org || https://tour.golang.org
+* basics: https://tour.go-zh.org || https://tour.golang.org
+
+* flowcontrol: https://tour.go-zh.org/flowcontrol/1
 
 * https://tour.golang.org/list || https://tour.go-zh.org/list
 
