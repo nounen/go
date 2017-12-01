@@ -11,6 +11,8 @@
 
 * methods: https://tour.go-zh.org/methods/1
 
+* concurrency: https://tour.go-zh.org/concurrency/1
+
 * https://tour.golang.org/list || https://tour.go-zh.org/list
 
 
