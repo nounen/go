@@ -9,6 +9,7 @@ func main()  {
 	 * slice
 	 */
 	var slice1, slice2 []string
+	// TODO: slice 为什么不能通过下标直接赋值?
 	// slice1[3] = "!" // slice 这么赋值不行! panic: runtime error: index out of range
 	
 	slice1 = append(slice1, "linl", "mou", "ren")
