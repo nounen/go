@@ -14,7 +14,7 @@ type Human struct {
 type Student struct {
 	Human      // 匿名字段，那么默认Student就包含了Human的所有字段.
 	Skills     // 匿名字段，自定义的类型string slice
-	int        // 内置类型作为匿名字段
+	int        // 内置类型作为匿名字段 (TODO: 这个方式我看的费解, 尽量不这么用)
 	speciality string
 }
 
