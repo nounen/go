@@ -10,7 +10,16 @@ import (
 	"time"
 	"crypto/md5"
 	"io"
+	"os"
 )
+
+func GetToken() string {
+	crutime := time.Now().Unix()
+	h := md5.New()
+	io.WriteString(h, strconv.FormatInt(crutime, 10))
+	token := fmt.Sprintf("%x", h.Sum(nil))
+	return token
+}
 
 func sayhelloName(w http.ResponseWriter, r *http.Request) {
 	//解析url传递的参数，对于POST则解析响应包的主体（request body）
@@ -61,15 +70,10 @@ func login(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("method:", r.Method)
 
 	if r.Method == "GET" {
-		crutime := time.Now().Unix()
-		h := md5.New()
-		io.WriteString(h, strconv.FormatInt(crutime, 10))
-		token := fmt.Sprintf("%x", h.Sum(nil))
-
 		t, _ := template.ParseFiles("login.html")
 
 		// TODO: 为什么在模板中使用是 `{{.}}`?
-		t.Execute(w, token)
+		t.Execute(w, GetToken())
 	} else {
 		// 校验密码
 		if len(input.Get("password"))  == 0 {
@@ -122,11 +126,48 @@ func login(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func upload(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("method:", r.Method)
+
+	if r.Method == "GET" {
+		t, _ := template.ParseFiles("upload.html")
+		t.Execute(w, GetToken())
+	} else {
+		// 设置上传的文件 maxMemory 大小的内存里面
+		r.ParseMultipartForm(32 << 20)
+
+		file, handler, err := r.FormFile("uploadfile")
+
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		defer file.Close()
+
+		// map[Content-Disposition:[form-data; name="uploadfile"; filename="One Dark.icls.txt"] Content-Type:[text/plain]]
+		fmt.Fprintf(w, "%v", handler.Header)
+
+		f, err := os.OpenFile("./" + handler.Filename, os.O_WRONLY | os.O_CREATE, 0666)
+
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		defer f.Close()
+
+		io.Copy(f, file)
+	}
+
+}
+
 func main() {
 	fmt.Println("localhost:9090")
 
 	http.HandleFunc("/", sayhelloName)
 	http.HandleFunc("/login", login)
+	http.HandleFunc("/upload", upload)
 
 	err := http.ListenAndServe(":9090", nil)
 
