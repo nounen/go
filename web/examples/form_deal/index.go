@@ -7,6 +7,9 @@ import (
 	"net/http"
 	"strings"
 	"strconv"
+	"time"
+	"crypto/md5"
+	"io"
 )
 
 func sayhelloName(w http.ResponseWriter, r *http.Request) {
@@ -58,9 +61,15 @@ func login(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("method:", r.Method)
 
 	if r.Method == "GET" {
+		crutime := time.Now().Unix()
+		h := md5.New()
+		io.WriteString(h, strconv.FormatInt(crutime, 10))
+		token := fmt.Sprintf("%x", h.Sum(nil))
+
 		t, _ := template.ParseFiles("login.html")
 
-		log.Println(t.Execute(w, nil))
+		// TODO: 为什么在模板中使用是 `{{.}}`?
+		t.Execute(w, token)
 	} else {
 		// 校验密码
 		if len(input.Get("password"))  == 0 {
