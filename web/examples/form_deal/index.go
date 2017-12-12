@@ -6,17 +6,19 @@ import (
 	"log"
 	"net/http"
 	"strings"
+	"net/url"
 )
 
 func sayhelloName(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm() //解析url传递的参数，对于POST则解析响应包的主体（request body）
-
-	//注意:如果没有调用ParseForm方法，下面无法获取表单的数据
-	fmt.Println(r.Form) // //这些信息是输出到服务器端的打印信息
+	//解析url传递的参数，对于POST则解析响应包的主体（request body）
+	r.ParseForm()
 
 	fmt.Println("path", r.URL.Path)
-	fmt.Println("scheme", r.URL.Scheme)
-	fmt.Println("url_long", r.Form["url_long"])
+	//fmt.Println("scheme", r.URL.Scheme)
+	//fmt.Println("url_long", r.Form["url_long"])
+
+	//注意:如果没有调用ParseForm方法，下面无法获取表单的数据
+	fmt.Println("Form:", r.Form) // //这些信息是输出到服务器端的打印信息
 
 	for k, v := range r.Form {
 		fmt.Println("key:", k)
@@ -24,6 +26,21 @@ func sayhelloName(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprintf(w, "Hello lll!") //这个写入到w的是输出到客户端的
+
+	// request.Form是一个 url.Values 类型. TODO: 没搞懂 url.Values 是什么
+	v := url.Values{}
+	fmt.Println("v:", v)
+
+	v.Set("name", "Ava")
+	v.Add("friend", "Jess")
+	v.Add("friend", "Sarah")
+	v.Add("friend", "Zoe")
+	// v.Encode() == "name=Ava&friend=Jess&friend=Sarah&friend=Zoe"
+	fmt.Println(v.Get("name"))
+	fmt.Println(v.Get("friend"))
+	fmt.Println(v["friend"])
+
+	fmt.Println("==================================")
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -44,6 +61,8 @@ func login(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fmt.Println("localhost:9090")
+
 	http.HandleFunc("/", sayhelloName)
 	http.HandleFunc("/login", login)
 
