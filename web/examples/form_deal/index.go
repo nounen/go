@@ -101,6 +101,14 @@ func login(w http.ResponseWriter, r *http.Request) {
 		//fmt.Println("username:", r.Form["username"])
 		//fmt.Println("password:", r.Form["password"])
 
+		// func HTMLEscapeString(s string) string // 转义s之后返回结果字符串
+		fmt.Println("username", template.HTMLEscapeString(input.Get("username")))
+		fmt.Println("password", template.HTMLEscapeString(input.Get("password")))
+
+		// func HTMLEscape(w io.Writer, b []byte) // 把b进行转义之后写到w
+		template.HTMLEscape(w, []byte(input.Get("username")))
+		template.HTMLEscape(w, []byte(input.Get("password")))
+
 		fmt.Println("==================================\n")
 	}
 }
