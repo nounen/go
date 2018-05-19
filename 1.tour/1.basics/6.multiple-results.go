@@ -8,7 +8,7 @@ func swap(x, y string) (string, string) {
 }
 
 func main()  {
-	// := 是专门接收多个返回值的符号?
+	// := 短变量 简洁赋值语句
 	a, b := swap("hello", "world")
 
 	fmt.Println(a, b)
