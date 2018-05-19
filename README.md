@@ -5,6 +5,7 @@
 
 * api 文档:  https://golang.org/pkg
 
+* 内建函数: https://go-zh.org/pkg/builtin/
 
 ## 安装
 * window : https://golang.org/doc/install
