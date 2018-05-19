@@ -19,7 +19,7 @@ func main()  {
 	fmt.Println(*p) // 42
 
 	*p = 21
-	fmt.Println(i)  // 21
+	fmt.Println(i)  // 21, i的值通过指针所指向的地址被改变了
 
 	p = &j
 	*p = *p / 37
