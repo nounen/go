@@ -38,3 +38,19 @@
     * `_, ok := map1[key1]` // 如果key1存在则ok == true，否则ok为false
 
 * 删除: `delete(map1, key1)`
+
+
+## 8.3 for-range 的配套用法
+* 使用 for 循环构造 map：
+    ```go
+    for key, value := range map1 {
+        ...
+    }
+    ```
+
+* 如果只想获取 key，你可以这么使用：
+    ```go
+    for key := range map1 {
+        fmt.Printf("key is: %d\n", key)
+    }
+    ```
