@@ -71,3 +71,17 @@
 
     fmt.Printf("Version A: Value of items: %v\n", items)
     ```
+
+
+## 8.5 map 的排序
+* __map 默认是无序的__，不管是按照 key 还是按照 value 默认都不排序
+
+* _如果你想为 map 排序_，需要将 key（或者 value）拷贝到一个 _切片_，再对切片排序（使用 `sort` 包，详见第 7.6.6 节）
+
+* 但是如果你想要一个排序的列表你最好使用结构体切片，这样会更有效：
+    ```go
+    type name struct {
+        key string
+        value int
+    }
+    ```
