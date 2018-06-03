@@ -117,3 +117,8 @@ __源码文件__ 被放置在 `$GOROOT/src/tideland-cgl.googlecode.com/hg` 目�
 
 使用: `import cgl "tideland-cgl.googlecode.com/hg"`
 ```
+
+
+## 9.8 自定义包的目录结构、go install 和 go test
+    * 重要: https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/master/eBook/09.8.md
+
