@@ -94,3 +94,26 @@ reflect: 实现通过程序运行时反射，让程序操作任意类型的变�
 
 * godoc 会为每个文件生成一系列的网页
     * 进入目录执行 `godoc -http=:6060 -goroot="."`, 在浏览器打开地址：http://localhost:6060
+
+
+## 9.7 使用 go install 安装自定义包
+* `go install` 是 Go 中自动包安装工具：如需要将包安装到本地它会从远端仓库下载包：检出、编译和安装一气呵成。
+
+* go install 使用了 GOPATH 变量(详见第 2.2 节)。
+
+* eg:
+```go
+假设我们要安装一个有趣的包 tideland（它包含了许多帮助示例，参见 项目主页）。
+
+因为我们需要创建目录在 Go 安装目录下，所以我们需要使用 root 或者 su 的身份执行命令。
+
+确保 Go 环境变量已经设置在 root 用户下的 ./bashrc 文件中。
+
+使用命令安装：go install tideland-cgl.googlecode.com/hg。
+
+__可执行文件__ hg.a 将被放到 `$GOROOT/pkg/linux_amd64/tideland-cgl.googlecode.com` 目录下，
+
+__源码文件__ 被放置在 `$GOROOT/src/tideland-cgl.googlecode.com/hg` 目录下，同样有个 hg.a 放置在 _obj 的子目录下。
+
+使用: `import cgl "tideland-cgl.googlecode.com/hg"`
+```
