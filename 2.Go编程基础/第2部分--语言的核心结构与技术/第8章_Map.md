@@ -1,0 +1,31 @@
+## 8.0 Map
+* `map` 是一种特殊的数据结构：一种元素对（pair）的无序集合，pair 的一个元素是 key，对应的另一个元素是 value，所以这个结构也称为 _关联数组_ 或 _字典_
+
+
+## 8.1 声明、初始化和 make
+* map 是引用类型，可以使用如下声明：
+    ```go
+    var map1 map[keytype]valuetype
+    var map1 map[string]int
+    ```
+
+* 声明的时候不需要知道 map 的长度，map 是可以动态增长的
+
+* 未初始化的 map 的值是 `nil`
+
+* `key` 可以是任意可以用 == 或者 != 操作符比较的类型，比如 string、int、float
+
+* `value` 可以是任意类型的；__通过使用空接口类型__（详见第 11.9 节），我们可以存储任意值，但是使用这种类型作为值时需要先做一次类型断言（详见第 11.3 节）。
+
+* map 是 __引用类型__ 的： 内存用 `make` 方法来分配
+    * eg: `var map1 = make(map[keytype]valuetype)` || `map1 := make(map[keytype]valuetype)`
+
+    * 不要使用 new，__永远用 make 来构造 map__
+
+* 8.1.2 map 容量: 动态的伸缩
+
+* 8.1.3 用切片作为 map 的值
+    ```go
+    mp1 := make(map[int][]int)
+    mp2 := make(map[int]*[]int)
+    ```
