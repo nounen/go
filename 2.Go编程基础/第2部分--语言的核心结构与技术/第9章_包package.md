@@ -122,3 +122,13 @@ __源码文件__ 被放置在 `$GOROOT/src/tideland-cgl.googlecode.com/hg` 目�
 ## 9.8 自定义包的目录结构、go install 和 go test
     * 重要: https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/master/eBook/09.8.md
 
+
+## 9.9 通过 Git 打包和安装
+
+
+## 9.10 Go 的外部包和项目
+* Go Walker 支持根据包名在海量数据中查询:
+    * https://gowalker.org/
+
+
+## 9.11 在 Go 程序中使用外部库
