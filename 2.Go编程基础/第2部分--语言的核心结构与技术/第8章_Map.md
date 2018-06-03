@@ -54,3 +54,20 @@
         fmt.Printf("key is: %d\n", key)
     }
     ```
+
+
+## 8.4 map 类型的切片
+* 假设我们想获取一个 `map` 类型的切片，我们必须使用两次 `make()` 函数，_第一次分配切片，第二次分配 切片中每个 map 元素_
+
+* eg:
+    ```go
+    // Version A:
+    items := make([]map[int]int, 5)
+
+    for i:= range items {
+        items[i] = make(map[int]int, 1)
+        items[i][1] = 2
+    }
+
+    fmt.Printf("Version A: Value of items: %v\n", items)
+    ```
