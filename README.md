@@ -7,6 +7,8 @@
 
 * 内建函数: https://go-zh.org/pkg/builtin/
 
+* https://godoc.org/
+
 ## 安装
 * window : https://golang.org/doc/install
 
