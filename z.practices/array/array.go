@@ -13,10 +13,13 @@ func main() {
 
 	// [Hello World]
 	fmt.Println(str)
-
 	// Hello World
 	fmt.Println(str[0], str[1])
+	// Type: [2]string
+	fmt.Printf("Type: %T Value: %v\n", str, str)
 
 	primes := [6]int{2, 3, 5, 7, 11, 13}
 	fmt.Println(primes)
+	// Type: [6]int
+	fmt.Printf("Type: %T Value: %v\n", primes, primes)
 }
