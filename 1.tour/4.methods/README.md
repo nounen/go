@@ -144,3 +144,19 @@ func (v *Vertex) Scale(f float64) {
     * `t := i.(T)` || `t, ok := i.(T)`
 
     * 该语句断言接口值 `i` 保存了具体类型 `T`，并将其底层类型为 T 的值赋予变量 t
+
+
+### 错误
+* `error` 类型是一个内建接口：
+    ```go
+    type error interface {
+        Error() string
+    }
+    ```
+
+* 通常函数会返回一个 `error` 值，调用的它的代码应当判断这个 _错误是否等于 `nil`_ 来进行错误处理
+
+### Reader
+
+
+### 图像
