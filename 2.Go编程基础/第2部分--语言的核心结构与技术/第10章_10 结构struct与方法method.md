@@ -114,3 +114,7 @@ func main() {
     * 还有 `fmt.Print()` 和 `fmt.Println()` 也会 _自动使用 String() 方法_。
 
 * MARK: 有点类似 PHP 类里面的 `__toString()`
+
+
+## 10.8 垃圾回收和 SetFinalizer
+* 略
