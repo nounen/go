@@ -38,3 +38,26 @@
     * 接口类型可以包含一个实例的引用， 该实例的类型实现了此接口（接口是动态类型）。
 
 * 即使接口在类型之后才定义，二者处于不同的包中，被单独编译：__只要类型实现了接口中的方法，它就实现了此接口__。
+
+
+## 11.2 接口嵌套接口
+* 一个接口可以包含一个或多个其他的接口，这相当于直接将这些内嵌接口的方法列举在外层接口中一样。
+
+* eg: 定义了三个接口
+```go
+type ReadWrite interface {
+    Read(b Buffer) bool
+    Write(b Buffer) bool
+}
+
+type Lock interface {
+    Lock()
+    Unlock()
+}
+
+type File interface {
+    ReadWrite
+    Lock
+    Close()
+}
+```
