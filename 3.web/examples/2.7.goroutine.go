@@ -23,5 +23,6 @@ func main() {
 	go say("world")
 
 	//当前Goroutines执行
+	// TODO: 然而我还是看不懂为什么 先调用 say() 才能触发执行 go say(), 到底要如何理解 goroutine
 	say("hello")
 }
