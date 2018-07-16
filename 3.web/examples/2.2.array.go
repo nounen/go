@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// 2.2 数组 array : len() cap()
 func main() {
 	var arr [10]int; // 声明一个长度为10的int类型数组
 	arr[0] = 10;
@@ -18,4 +19,6 @@ func main() {
 
 	c := [...]int{4, 5, 6}
 	fmt.Printf("%v\n", c)
+	fmt.Println(len(c))
+	fmt.Println(cap(c))
 }
