@@ -23,7 +23,7 @@ TODO: 指针作为receiver
 
 你又说对的，这两种方式都可以，因为Go知道receiver是指针，他自动帮你转了。
 
-也就是说：
+__也就是说：__
 	如果一个method的receiver是*T,你可以在一个T类型的实例变量V上面调用这个method，而不需要&V去调用这个method
 类似的
 
@@ -43,7 +43,7 @@ type Color byte
 
 type Box struct {
 	width, height, depth float64
-	color Color
+	color                Color
 }
 
 type BoxList []Box // a slice of boxes
@@ -82,14 +82,14 @@ func (bl BoxList) PaintItBlack() {
 }
 
 func (c Color) String() string {
-	strings := []string {"WHITE", "BLACK", "BLUE", "RED", "YELLOW"}
+	strings := []string{"WHITE", "BLACK", "BLUE", "RED", "YELLOW"}
 
 	return strings[c]
 }
 
 func main() {
 	// TODO: 这种结构似乎很像数据库查出来的结果
-	boxes := BoxList {
+	boxes := BoxList{
 		Box{4, 4, 4, RED},
 		Box{10, 10, 1, YELLOW},
 		Box{1, 1, 20, BLACK},
