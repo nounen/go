@@ -18,6 +18,16 @@ func main() {
 	} else {
 		fmt.Println("y is less than 10")
 	}
+
+	// if ... else if ... else ...
+	integer := 4
+	if integer == 3 {
+		fmt.Println("The integer is equal to 3")
+	} else if integer < 3 {
+		fmt.Println("The integer is less than 3")
+	} else {
+		fmt.Println("The integer is greater than 3")
+	}
 }
 
 func getY() int {
