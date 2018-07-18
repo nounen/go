@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// 实现了一个简易的路由器
 type MyMux struct {
 }
 
