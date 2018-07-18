@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"strings"
-	"log"
 )
 
+// http包建立Web服务器
 func sayhelloName(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 
@@ -14,7 +15,7 @@ func sayhelloName(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("path", r.URL.Path)
 	fmt.Println("scheme", r.URL.Scheme)
 	fmt.Println(r.Form["url_long"])
-	
+
 	for k, v := range r.Form {
 		fmt.Println("key:", k)
 		fmt.Println("val:", strings.Join(v, ""))
@@ -23,7 +24,7 @@ func sayhelloName(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello astaxie!")
 }
 
-func main()  {
+func main() {
 	http.HandleFunc("/", sayhelloName)
 
 	err := http.ListenAndServe(":9090", nil)
