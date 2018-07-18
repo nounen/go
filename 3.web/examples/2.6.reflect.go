@@ -53,7 +53,13 @@ func main() {
 	fmt.Println()
 
 	// 通过反射修改值 -- TODO: 会报错哇， 不知道怎么修改值
-	todoValue.Field(0).SetInt(998)
-	todoValue.Field(1).SetString("通过反射改变value")
-	fmt.Println(todo)
+	//todoValue.Field(0).SetInt(998)
+	//todoValue.Field(1).SetString("通过反射改变value")
+	//fmt.Println(todo)
+
+	// 反射修改值
+	x := 3.4
+	fmt.Println("修改前:", x)
+	reflect.ValueOf(&x).Elem().SetFloat(7.1) // __必须__ 传入指针, 且调用 Elem() 方法
+	fmt.Println("修改后:", x)
 }
