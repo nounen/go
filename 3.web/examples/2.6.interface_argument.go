@@ -5,6 +5,7 @@ import (
 	"strconv"
 )
 
+// 任何实现了 String方法 的类型都能作为参数被 fmt.Println 调用
 type Human struct {
 	name  string
 	age   int
