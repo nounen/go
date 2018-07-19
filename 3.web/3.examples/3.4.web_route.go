@@ -27,5 +27,8 @@ func sayhelloName(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	mux := &MyMux{}
+
+	fmt.Println("localhost:9090 web start!")
+
 	http.ListenAndServe(":9090", mux)
 }
