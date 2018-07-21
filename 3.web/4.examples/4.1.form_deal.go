@@ -42,5 +42,9 @@ func login(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(v["friend"])
 		fmt.Println(v)
 		fmt.Println() // map[friend:[Jess Sarah] name:[Ava]]
+
+		// 转义
+		fmt.Println("username", template.HTMLEscapeString(r.FormValue("username")))
+		template.HTMLEscape(w, []byte(r.Form.Get("username"))) //输出到客户端
 	}
 }
