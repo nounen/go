@@ -12,5 +12,6 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
+	// 把结果发送到响应中，这里我们用的是标准输出流的fmt.Fprintf
 	fmt.Fprintf(w, "URL.Path = %q\n", r.URL.Path)
 }
