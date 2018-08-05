@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// new() 函数: 返回的值是指向新值的指针, 分配了该类型的零值
 func main() {
 	// new 函数返回指针
 	p := new(int)
