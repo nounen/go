@@ -23,17 +23,17 @@ func main() {
 	}
 
 	/**
-	$ go run 2.3.1.flag.go a bc def
+	$ go run 2.3.2.flag.go a bc def
 	a bc def
 
-	$ go run 2.3.1.flag.go -s / a bc def
+	$ go run 2.3.2.flag.go -s / a bc def
 	a/bc/def
 
-	$ go run 2.3.1.flag.go -n a bc def
+	$ go run 2.3.2.flag.go -n a bc def
 	a bc def$
 
-	$ go run 2.3.1.flag.go -help
-	Usage of 2.3.1.flag.go:
+	$ go run 2.3.2.flag.go -help
+	Usage of 2.3.2.flag.go:
 	  -n    omit trailing newline
 	  -s string
 			separator (default " ")
