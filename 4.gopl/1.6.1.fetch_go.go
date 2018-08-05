@@ -30,11 +30,14 @@ func main() {
 	 */
 }
 
+// goroutine 是一种函数的并发执行方式，而 channel 是用来在 goroutine 之间进行参数传递
+// main 函数本身也运行在一个 goroutine 中，而 `go function` 则表示创建一个新的goroutine，并在这个新的 goroutine 中执行这个函数。
 func byGo()  {
 	start := time.Now()
 	ch := make(chan string)
 	args := os.Args[1:]
 
+	// 当一个 goroutine 尝试在一个 channel 上做 send 或者 receive 操作时，这个 goroutine 会阻塞在调用处，直到另一个 goroutine 往这个 channel 里写入、或者接收值，这样两个 goroutine 才会继续执行 channel 操作之后的逻辑。
 	for _, url := range args{
 		// start a goroutine
 		go fetchGo(url, ch)
