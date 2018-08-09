@@ -1,12 +1,12 @@
 package main
 
 import (
-	"math/rand"
 	"fmt"
+	"math/rand"
 )
 
 type tree struct {
-	value int
+	value       int
 	left, right *tree
 }
 
@@ -32,12 +32,33 @@ func main() {
 }
 
 // 使用一个二叉树来实现一个插入排序
-func Sort(values []int)  {
+func Sort(values []int) {
 	var root *tree
 
-	for _, v := range values{
+	for _, v := range values {
 		root = add(root, v)
 	}
+
+	/*
+		// 递归结构体
+		fmt.Println(root)
+
+		fmt.Println(root.left)
+		fmt.Println(root.right)
+
+		fmt.Println(root.left.left)
+		fmt.Println(root.left.right)
+		fmt.Println(root.right.left)
+		fmt.Println(root.right.right)
+
+		fmt.Println(root.left.right.left)
+		fmt.Println(root.left.right.right)
+		fmt.Println(root.right.left.left)
+		fmt.Println(root.right.left.right)
+		fmt.Println(root.right.right.left)
+		fmt.Println(root.right.right.right)
+		fmt.Println(root.right.right.right.right)
+	*/
 
 	appendValues(values[:0], root)
 }
@@ -61,7 +82,7 @@ func add(t *tree, value int) *tree {
 		return t
 	}
 
-	if value < t.value{
+	if value < t.value {
 		t.left = add(t.left, value)
 	} else {
 		t.right = add(t.right, value)
