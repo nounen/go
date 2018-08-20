@@ -2,8 +2,6 @@ package main
 
 import (
 	"archive/zip"
-	"fmt"
-	"io"
 	"log"
 	"os"
 )
@@ -16,28 +14,33 @@ Package zip provides support for reading and writing ZIP archives.
 为了向后兼容，文件头包含32位和64位字段。64位字段总是包含正确的值，对于普通存档，这两个字段是相同的。对于需要ZIP64格式的文件，32位字段将是0xffffffff，必须使用64位字段。
 */
 
-// 打开一个 zip 文件, 并循环里面文件和文件内容
+// https://golang.org/src/archive/zip/example_test.go
 func main() {
-	// Open a zip archive for reading.
-	r, err := zip.OpenReader("test.zip")
-	checkError(err)
-	defer r.Close()
+	ExampleWriter()
+}
 
-	// Iterate through the files in the archive,
-	// printing some of their contents.
-	// TODO: 为什么 r.File 写成 r.Reader.File 也是一样
-	for _, f := range r.File {
-		fmt.Printf("Contents of %s:\n", f.Name)
+// 官方案例没看懂, 稍作修改: 创建一个 zip 包并且写入文件
+func ExampleWriter() {
+	// Create a new zip archive.
+	z, _ := os.Create("ExampleWriter.zip")
+	w := zip.NewWriter(z)
+	defer w.Close()
 
-		rc, err := f.Open()
+	// Add some files to the archive.
+	var files = []struct {
+		Name, Body string
+	}{
+		{"readme.txt", "This archive contains some text files."},
+		{"gopher.txt", "Gopher names:\nGeorge\nGeoffrey\nGonzo"},
+		{"todo.txt", "Get animal handling licence.\nWrite more examples."},
+	}
+
+	for _, file := range files {
+		f, err := w.Create(file.Name)
 		checkError(err)
 
-		// TODO: 为什么会打印? 多个文件如何读取? 中文乱码怎么解决?
-		_, err = io.CopyN(os.Stdin, rc, 68)
-		fmt.Println()
+		_, err = f.Write([]byte(file.Body)) // string 转为 byte 才能被写入
 		checkError(err)
-
-		rc.Close()
 	}
 }
 
