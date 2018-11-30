@@ -7,7 +7,7 @@ func swap(x, y string) (string, string) {
 	return y, x
 }
 
-func main()  {
+func main() {
 	// := 短变量 简洁赋值语句
 	a, b := swap("hello", "world")
 

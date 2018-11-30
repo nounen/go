@@ -29,12 +29,12 @@ complex64 complex128
 */
 
 var (
-	ToBe bool = false
-	MaxInt uint64 = 1<<64 - 1
-	z complex128 = cmplx.Sqrt(-5 + 12i)
+	ToBe   bool       = false
+	MaxInt uint64     = 1<<64 - 1
+	z      complex128 = cmplx.Sqrt(-5 + 12i)
 )
 
-func main()  {
+func main() {
 	const f = "%T(%v)\n"
 	// bool(false)
 	fmt.Printf(f, ToBe, ToBe)

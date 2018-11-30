@@ -11,6 +11,6 @@ func split(sum int) (x, y int) {
 	return
 }
 
-func main()  {
+func main() {
 	fmt.Println(split(17)) // 得到 "7 10"
 }
