@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main()  {
+func main() {
 	sum := 0
 
 	// Go **只有一种** 循环结构—— for 循环
@@ -12,4 +12,3 @@ func main()  {
 
 	fmt.Println(sum)
 }
-
