@@ -20,3 +20,27 @@
 * 函数的最后一个参数是采用 `...type` 的形式，那么这个函数就可以处理一个变长的参数
 
 * 如果参数被存储在一个 slice 类型的变量 slice 中，则可以通过 `slice...` 的形式来传递参数，调用变参函数。
+
+
+### 6.4 defer 和追踪
+* 关键字 defer 允许我们进行一些函数执行完成后的收尾工作，例如：
+```go
+// 1.关闭文件流 （详见 第 12.2 节）
+// open a file  
+defer file.Close()
+
+
+// 2. 解锁一个加锁的资源 （详见 第 9.3 节）
+mu.Lock()  
+defer mu.Unlock() 
+
+
+// 3.打印最终报告
+printHeader()  
+defer printFooter()
+
+
+// 4.关闭数据库链接
+// open a database connection  
+defer disconnectFromDB()
+```
