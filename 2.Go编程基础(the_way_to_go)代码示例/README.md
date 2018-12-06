@@ -75,3 +75,21 @@ defer disconnectFromDB()
 * 类型不需要显式声明它实现了某个接口：接口被隐式地实现。多个类型可以实现同一个接口。
 
 * 接口仅仅是定义方法，好像没啥用？
+
+
+### 13.1 错误处理
+* Go 有一个预先定义的 error 接口类型
+```go
+type error interface {
+	Error() string
+}
+```
+
+* // 当发生错误必须中止程序时，`panic` 可以用于错误处理模式：
+```go
+if err != nil {
+	panic("ERROR occurred:" + err.Error())
+}
+```
+
+* 在多层嵌套的函数调用中调用 `panic`，可以马上中止当前函数的执行，所有的 `defer` 语句都会保证执行并把控制权交还给接收到 `panic` 的函数调用者。这样向上冒泡直到最顶层，并执行（每层的） `defer`，在栈顶处程序崩溃，并在命令行中用传给 `panic` 的值报告错误情况：这个终止过程就是 `panicking`。
