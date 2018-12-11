@@ -14,6 +14,7 @@ import (
 
 //!+
 func main() {
+	// 使用 strings.Join 拼接字符串效率高，不会 "每次循环迭代字符串s的内容都会更新"
 	fmt.Println(strings.Join(os.Args[1:], " "))
 }
 

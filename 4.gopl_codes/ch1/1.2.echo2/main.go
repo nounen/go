@@ -14,6 +14,8 @@ import (
 
 func main() {
 	s, sep := "", ""
+
+	// for循环的另一种形式, 在某种数据类型的区间（range）上遍历，如字符串或切片
 	for _, arg := range os.Args[1:] {
 		s += sep + arg
 		sep = " "

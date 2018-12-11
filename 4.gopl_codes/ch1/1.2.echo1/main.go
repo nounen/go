@@ -14,6 +14,8 @@ import (
 
 func main() {
 	var s, sep string
+
+	// os.Args变量是一个字符串（string）的切片（slice）
 	for i := 1; i < len(os.Args); i++ {
 		s += sep + os.Args[i]
 		sep = " "
