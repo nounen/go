@@ -1,5 +1,8 @@
 # From
-* https://github.com/adonovan/gopl.io/
+* 配合文档： https://books.studygolang.com/gopl-zh/
+
+* 文档代码： https://github.com/adonovan/gopl.io/
+
 
 # The Go Programming Language
 
