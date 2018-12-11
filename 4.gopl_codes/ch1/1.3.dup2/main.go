@@ -17,10 +17,12 @@ import (
 func main() {
 	counts := make(map[string]int)
 	files := os.Args[1:]
+
 	if len(files) == 0 {
 		countLines(os.Stdin, counts)
 	} else {
 		for _, arg := range files {
+			// os.Ope n函数返回两个值。第一个值是被打开的文件 (*os.File），其后被 Scanner 读取
 			f, err := os.Open(arg)
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "dup2: %v\n", err)
@@ -30,9 +32,12 @@ func main() {
 			f.Close()
 		}
 	}
+
+	fmt.Printf("重复次数\t重复内容\n")
+
 	for line, n := range counts {
 		if n > 1 {
-			fmt.Printf("%d\t%s\n", n, line)
+			fmt.Printf("%d\t\t%s\n", n, line)
 		}
 	}
 }
