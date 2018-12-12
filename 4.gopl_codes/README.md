@@ -4,6 +4,24 @@
 * 文档代码： https://github.com/adonovan/gopl.io/
 
 
+### 2.4 赋值
+```go
+// 交换两个变量的值
+x, y := 0, 1
+x, y = y, x+y
+
+
+v = m[key]      // map 查找，失败时返回零值
+v = x.(T)       // type 断言，失败时panic异常
+v = <-ch        // 管道接收，失败时返回零值（阻塞不算是失败）
+
+
+_, err = io.Copy(dst, src) // 丢弃字节数
+_, ok = x.(T)              // 只检测类型，忽略具体值
+```
+
+
+
 # The Go Programming Language
 
 This repository provides the downloadable example programs
