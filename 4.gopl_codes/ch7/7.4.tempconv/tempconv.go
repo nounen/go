@@ -3,8 +3,8 @@
 
 // See page 180.
 
-// Package tempconv performs Celsius and Fahrenheit temperature computations.
-package tempconv
+// Package 7.4.tempconv performs Celsius and Fahrenheit temperature computations.
+package __4_tempconv
 
 import (
 	"flag"

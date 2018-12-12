@@ -3,7 +3,7 @@
 
 // See page 179.
 
-// The sleep program sleeps for a specified period of time.
+// The 7.4.sleep program sleeps for a specified period of time.
 package main
 
 import (
@@ -12,9 +12,10 @@ import (
 	"time"
 )
 
-//!+sleep
-var period = flag.Duration("period", 1*time.Second, "sleep period")
+//!+7.4.sleep
+var period = flag.Duration("period", 1*time.Second, "7.4.sleep period")
 
+// go run 7.4.sleep/sleep.go -period 10000ms
 func main() {
 	flag.Parse()
 	fmt.Printf("Sleeping for %v...", *period)
@@ -22,4 +23,4 @@ func main() {
 	fmt.Println()
 }
 
-//!-sleep
+//!-7.4.sleep

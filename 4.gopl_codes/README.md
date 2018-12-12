@@ -27,6 +27,12 @@ _, ok = x.(T)              // 只检测类型，忽略具体值
 * 通常来说，不应该对 panic 异常做任何处理，但有时，也许我们可以从异常中恢复，至少我们可以在程序崩溃前，做一些操作。
 
 
+### 7.3. 实现接口的条件
+* 一个类型如果拥有一个接口需要的所有方法，那么这个类型就实现了这个接口。
+
+
+
+
 # The Go Programming Language
 
 This repository provides the downloadable example programs
