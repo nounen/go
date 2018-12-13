@@ -31,6 +31,10 @@ _, ok = x.(T)              // 只检测类型，忽略具体值
 * 一个类型如果拥有一个接口需要的所有方法，那么这个类型就实现了这个接口。
 
 
+### 8.1. Goroutines
+* 在Go语言中，每一个 __并发__ 的执行单元叫作一个 `goroutine`
+
+* 当一个程序启动时，其主函数即在一个单独的 goroutine 中运行，我们叫它 __main goroutine__
 
 
 # The Go Programming Language

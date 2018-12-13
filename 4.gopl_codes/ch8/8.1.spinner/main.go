@@ -14,11 +14,14 @@ import (
 //!+
 func main() {
 	go spinner(100 * time.Millisecond)
+
 	const n = 45
 	fibN := fib(n) // slow
+
 	fmt.Printf("\rFibonacci(%d) = %d\n", n, fibN)
 }
 
+// loading 效果 (人才啊)
 func spinner(delay time.Duration) {
 	for {
 		for _, r := range `-\|/` {
@@ -28,10 +31,12 @@ func spinner(delay time.Duration) {
 	}
 }
 
+// 菲波那契数列, x 越大计算越久
 func fib(x int) int {
 	if x < 2 {
 		return x
 	}
+
 	return fib(x-1) + fib(x-2)
 }
 
