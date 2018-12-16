@@ -37,6 +37,18 @@ _, ok = x.(T)              // 只检测类型，忽略具体值
 * 当一个程序启动时，其主函数即在一个单独的 goroutine 中运行，我们叫它 __main goroutine__
 
 
+### 8.4. Channels
+* 如果说 `goroutine` 是Go语言程序的 __并发体__ 的话，那么 `channels` 则是它们之间的 __通信机制__
+
+```go
+ch <- x  // a send statement
+x = <-ch // a receive expression in an assignment statement
+<-ch     // a receive statement; result is discarded
+```
+
+* 无缓存 Channels 有时候也被称为同步 Channels。
+
+
 # The Go Programming Language
 
 This repository provides the downloadable example programs
