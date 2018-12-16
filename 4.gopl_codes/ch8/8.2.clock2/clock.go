@@ -40,6 +40,7 @@ func main() {
 			continue
 		}
 
+		// 对比 clock1，仅仅新增 go 关键字就解决并发问题
 		go handleConn(conn) // handle connections concurrently
 	}
 	//!-
