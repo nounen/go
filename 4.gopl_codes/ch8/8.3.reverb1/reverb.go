@@ -19,8 +19,10 @@ import (
 func echo(c net.Conn, shout string, delay time.Duration) {
 	fmt.Fprintln(c, "\t", strings.ToUpper(shout))
 	time.Sleep(delay)
+
 	fmt.Fprintln(c, "\t", shout)
 	time.Sleep(delay)
+
 	fmt.Fprintln(c, "\t", strings.ToLower(shout))
 }
 
@@ -40,12 +42,14 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	for {
 		conn, err := l.Accept()
 		if err != nil {
 			log.Print(err) // e.g., connection aborted
 			continue
 		}
+
 		go handleConn(conn)
 	}
 }
