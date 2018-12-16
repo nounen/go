@@ -15,11 +15,13 @@ import (
 
 func handleConn(c net.Conn) {
 	defer c.Close()
+
 	for {
 		_, err := io.WriteString(c, time.Now().Format("15:04:05\n"))
 		if err != nil {
 			return // e.g., client disconnected
 		}
+
 		time.Sleep(1 * time.Second)
 	}
 }
@@ -29,6 +31,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	//!+
 	for {
 		conn, err := listener.Accept()
@@ -36,6 +39,7 @@ func main() {
 			log.Print(err) // e.g., connection aborted
 			continue
 		}
+
 		go handleConn(conn) // handle connections concurrently
 	}
 	//!-
