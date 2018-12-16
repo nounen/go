@@ -27,6 +27,8 @@ func echo(c net.Conn, shout string, delay time.Duration) {
 func handleConn(c net.Conn) {
 	input := bufio.NewScanner(c)
 	for input.Scan() {
+		// 此处涉及到 sleep，所以尽管父层级使用了go，这里还是会出现并发阻塞问题
+		// 解决方案就是再加 go
 		go echo(c, input.Text(), 1*time.Second)
 	}
 	// NOTE: ignoring potential errors from input.Err()
