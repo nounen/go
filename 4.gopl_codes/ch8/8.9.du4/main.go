@@ -3,10 +3,10 @@
 
 // See page 251.
 
-// The 8.8.du4 command computes the disk usage of the files in a directory.
+// The 8.9.du4 command computes the disk usage of the files in a directory.
 package main
 
-// The 8.8.du4 variant includes cancellation:
+// The 8.9.du4 variant includes cancellation:
 // it terminates quickly when the user hits return.
 
 import (
