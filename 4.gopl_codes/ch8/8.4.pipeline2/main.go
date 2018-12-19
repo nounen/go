@@ -6,7 +6,10 @@
 // Pipeline2 demonstrates a finite 3-stage pipeline.
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 //!+
 func main() {
@@ -15,7 +18,10 @@ func main() {
 
 	// Counter
 	go func() {
-		for x := 0; x < 100; x++ {
+		fmt.Println("Counter sleep...")
+		time.Sleep(time.Duration(1)*time.Second)
+
+		for x := 0; x < 10; x++ {
 			naturals <- x
 		}
 		close(naturals)
@@ -23,6 +29,9 @@ func main() {
 
 	// Squarer
 	go func() {
+		fmt.Println("Squarer sleep...")
+		time.Sleep(time.Duration(1)*time.Second)
+
 		for x := range naturals {
 			squares <- x * x
 		}
@@ -30,6 +39,9 @@ func main() {
 	}()
 
 	// Printer (in main goroutine)
+	fmt.Println("Printer sleep...")
+	time.Sleep(time.Duration(1)*time.Second)
+
 	for x := range squares {
 		fmt.Println(x)
 	}

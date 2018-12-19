@@ -7,17 +7,26 @@
 // with range, close, and unidirectional channel types.
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 //!+
 func counter(out chan<- int) {
-	for x := 0; x < 100; x++ {
+	fmt.Println("counter sleep...")
+	time.Sleep(time.Duration(1)*time.Second)
+
+	for x := 0; x < 10; x++ {
 		out <- x
 	}
 	close(out)
 }
 
 func squarer(out chan<- int, in <-chan int) {
+	fmt.Println("squarer sleep...")
+	time.Sleep(time.Duration(1)*time.Second)
+
 	for v := range in {
 		out <- v * v
 	}
@@ -25,6 +34,9 @@ func squarer(out chan<- int, in <-chan int) {
 }
 
 func printer(in <-chan int) {
+	fmt.Println("printer sleep...")
+	time.Sleep(time.Duration(1)*time.Second)
+
 	for v := range in {
 		fmt.Println(v)
 	}
@@ -37,6 +49,22 @@ func main() {
 	go counter(naturals)
 	go squarer(squares, naturals)
 	printer(squares)
+
+	/**
+	printer sleep...
+	counter sleep...
+	squarer sleep...
+	0
+	1
+	4
+	9
+	16
+	25
+	36
+	49
+	64
+	81
+	 */
 }
 
 //!-
