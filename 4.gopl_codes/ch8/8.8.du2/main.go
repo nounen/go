@@ -1,12 +1,13 @@
 // Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
 // License: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
-// See page 247.
+// See page 249.
 
-//!+main
-
-// The du1 command computes the disk usage of the files in a directory.
+// The 8.8.du2 command computes the disk usage of the files in a directory.
 package main
+
+// The 8.8.du2 variant uses select and a time.Ticker
+// to print the totals periodically if -v is set.
 
 import (
 	"flag"
@@ -14,9 +15,18 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"time"
 )
 
+//!+
+var verbose = flag.Bool("v", false, "show verbose progress messages")
+
+// go run 8.8.du2/main.go -v /mnt/d/codes
+// 主goroutine现在使用了计时器来每500ms生成事件，然后用select语句来等待文件大小的消息来更新总大小数据，或者一个计时器的事件来打印当前的总大小数据
 func main() {
+	// ...start background goroutine...
+
+	//!-
 	// Determine the initial directories.
 	flag.Parse()
 	roots := flag.Args()
@@ -33,22 +43,35 @@ func main() {
 		close(fileSizes)
 	}()
 
-	// Print the results.
-	var nfiles, nbytes int64
-	for size := range fileSizes {
-		nfiles++
-		nbytes += size
+	//!+
+	// Print the results periodically.
+	var tick <-chan time.Time
+	if *verbose {
+		tick = time.Tick(500 * time.Millisecond)
 	}
-	printDiskUsage(nfiles, nbytes)
+	var nfiles, nbytes int64
+
+	loop:
+		for {
+			select {
+			case size, ok := <-fileSizes:
+				if !ok {
+					break loop // fileSizes was closed
+				}
+				nfiles++
+				nbytes += size
+			case <-tick:
+				printDiskUsage(nfiles, nbytes)
+			}
+		}
+		printDiskUsage(nfiles, nbytes) // final totals
 }
+
+//!-
 
 func printDiskUsage(nfiles, nbytes int64) {
 	fmt.Printf("%d files  %.1f GB\n", nfiles, float64(nbytes)/1e9)
 }
-
-//!-main
-
-//!+walkDir
 
 // walkDir recursively walks the file tree rooted at dir
 // and sends the size of each found file on fileSizes.
@@ -67,13 +90,8 @@ func walkDir(dir string, fileSizes chan<- int64) {
 func dirents(dir string) []os.FileInfo {
 	entries, err := ioutil.ReadDir(dir)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "du1: %v\n", err)
+		fmt.Fprintf(os.Stderr, "du: %v\n", err)
 		return nil
 	}
 	return entries
 }
-
-//!-walkDir
-
-// The du1 variant uses two goroutines and
-// prints the total after every file is found.
